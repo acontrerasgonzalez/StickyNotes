@@ -14,21 +14,21 @@ class Stickynotes{
         this.nota.style.height=alt+"px";
         var texto = document.createTextNode("Escriba aqui..."); 
         this.nota.appendChild(texto);
-        document.body.addEventListener("onmousemove", (event)=>{
-            if(this.clicka=true){
+        document.body.onmousemove= (event)=>{
+            if(this.clicka){
                 var x = event.clientX;
                 var y = event.clientY;
                 this.nota.style.left=x+"px";
                 this.nota.style.top=y+"px";
             }
-        });
-        this.nota.addEventListener("onclick", (event)=>{
+        };
+          this.nota.onclick=(event)=>{
             if(this.clicka){
                 this.clicka=false;
             }else{
                 this.clicka=true;
             }
-          });
+          };
         document.body.appendChild(this.nota);
     }
     
