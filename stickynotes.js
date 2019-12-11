@@ -1,19 +1,14 @@
 class Stickynotes{
 
-    constructor(alt,anc,color,id){
+    constructor(color,id,text='Escriba aqui...'){
         this.clicka=false;
-        this.alt=alt;
-        this.anc=anc;
         this.id=id;
         this.nota=document.createElement("div");
         this.nota.setAttribute(("id"),this.id);
-        this.nota.style.left="50px";
-        this.nota.style.top="50px";
         this.nota.style.backgroundColor=color;
-        this.nota.style.width=anc+"px";
-        this.nota.style.height=alt+"px";
-        var texto = document.createTextNode("Escriba aqui..."); 
-        this.nota.appendChild(texto);
+        this.texto = document.createElement("p");
+        this.texto.innerHTML=text;
+        this.nota.appendChild(this.texto);
         document.body.onmousemove= (event)=>{
             if(this.clicka){
                 var x = event.clientX;
@@ -29,8 +24,22 @@ class Stickynotes{
                 this.clicka=true;
             }
           };
-        document.body.appendChild(this.nota);
+        document.getElementById("container").appendChild(this.nota);
     }
     
+    
 }
-var nota=new Stickynotes(300,300,"yellow","nota1");
+
+var cont=0;
+function creaNota(){
+    if(document.getElementById("tex").value==""){
+        var nota=new Stickynotes(document.getElementById("sel").value,"nota"+cont);
+        cont++;
+        return nota;
+    }else{
+        var nota=new Stickynotes(document.getElementById("sel").value,"nota"+cont,document.getElementById("tex").value);
+        cont++;
+        return nota;
+}
+}
+document.getElementById("boton").onclick=creaNota;
